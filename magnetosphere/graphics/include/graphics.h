@@ -1,18 +1,33 @@
 #if !defined(MAGNET_GRAPHICS_H_)
 #define MAGNET_GRAPHICS_H_
 
-#include "common.h"
-#include "plugin.h"
+#include "graphicscommon.h"
+#include "plugininterfaces.h"
+#include "graphicsplugin.h"
 
 namespace magnet {
 namespace graphics {
 
-    class Graphics : public main::IPlugin {
+    class MAG_GRAPHICS_EXPORT Graphics : public main::IGraphicsInterface {
+        friend class ICmdWindow;
+    // Class
+    public:
+        Graphics();
+    
+    // Methods
     public:
         void initialise();
-        Graphics();
+        bool update();
+        void shutdown();
+        void writeString(const char* string);
+        void setRenderer(IGraphicsPlugin *renderer);
     private:
-        IPlugin* mRenderer;
+        void readString(const char* string, const char* source);
+
+    // Data
+    private:
+        IGraphicsPlugin* mRenderer;
+        ICmdWindow* mCmdWindow;
     };
 
 } // namespace graphics

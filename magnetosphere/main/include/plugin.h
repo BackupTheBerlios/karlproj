@@ -23,7 +23,7 @@ namespace main {
                 OT_FLOAT   = 2,
                 OT_BOOL    = 3,
                 OT_CHOICE  = 4,
-                OT_PLUGIN  = 5,
+                OT_PLUGIN  = OT_STRING,
             } type;
             std::vector <std::string> choices;
         };
@@ -41,9 +41,11 @@ namespace main {
         const OptionsMap* getOptions();
         void setOption(const char* option, const char* value);
         // note, applyOptions returns whether or not changes were applied, to notify the user of a needed restart
-        virtual bool applyOptions();
+        virtual bool applyOptions() {return false;}
         // initialise is called after plugin options are loaded from the config file
-        virtual void initialise() = 0;
+        virtual void initialise() {}
+        // shutdown is called for every loaded plugin before all are unloaded by core
+        virtual void shutdown() {}
     protected:
         void setOptionType(const char* option, Option::OptionType type);
         unsigned int addOptionChoice(const char* option, const char* choice);

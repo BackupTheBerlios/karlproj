@@ -1,6 +1,9 @@
 #include "cfgfile.h"
 
+#include "core.h"
+
 #include <fstream>
+#include <sstream>
 
 namespace magnet {
 namespace main {
@@ -55,6 +58,9 @@ namespace main {
                 }
             }
             fil.close();
+            std::stringstream ss;
+            ss << "Configuration loaded from " << mFileName;
+            Core::getSingleton().writeString(ss.str().c_str());
         }
     }
 
@@ -80,6 +86,9 @@ namespace main {
                 }
             }
             fil.close();
+            std::stringstream ss;
+            ss << "Configuration saved to " << mFileName;
+            Core::getSingleton().writeString(ss.str().c_str());
         } else {
             throw( "Failed to open config file for writing!" );
         }

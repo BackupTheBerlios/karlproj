@@ -8,7 +8,7 @@
 #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__)
 #   define MAGNET_PLATFORM MAG_PLATFORM_WIN32
 #else
-#   pragma message("WARNING: Unknown platform!")
+#   error "Unknown platform!"
 #   define MAGNET_PLATFORM MAG_PLATFORM_UNIX
 #endif
 
@@ -27,7 +27,7 @@
 #   define MAGNET_COMPILER  MAG_COMPILER_BORLAND
 #   define COMPILER_VERSION __BCPLUSPLUS__*/
 #else
-#   pragma message("WARNING: Unknown compiler!")
+#   error "Unknown compiler!"
 #   define MAGNET_COMPILER  MAG_COMPILER_GNUC
 #   define COMPILER_VERSION 0
 #endif
@@ -46,6 +46,11 @@
 #   define MAG_MAIN_EXPORT MAGNET_IMPORT
 #endif
 
+// Set debugging
+#if defined(DEBUG) || defined(_DEBUG)
+#   define MAGNET_DEBUG_BUILD
+#endif
+
 // Check for MSVC w/out stlport
 /*#if MAGNET_COMPILER == MAG_COMPILER_MSVC
 #   pragma once
@@ -56,7 +61,7 @@
 #endif*/
 
 // Set stlport for debugging if we are debugging
-#if defined(DEBUG) || defined(_DEBUG)
+#ifdef MAGNET_DEBUG_BUILD
 #   define _STLP_DEBUG 1
 #endif
 

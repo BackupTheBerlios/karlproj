@@ -38,11 +38,6 @@ namespace main {
         (*mOptions)[option].value = value;
     }
 
-    bool IPlugin::applyOptions()
-    {
-        return false;
-    }
-
     unsigned int IPlugin::addOptionChoice(const char* option, const char* choice)
     {
         (*mOptions)[option].choices.push_back(choice);
@@ -71,18 +66,12 @@ namespace main {
 
     float IPlugin::getFloatOption(const char* option)
     {
-        std::stringstream ss = (*mOptions)[option].value;
-        float flt;
-        ss >> flt;
-        return flt;
+        return (float)atof((*mOptions)[option].value.c_str());
     }
 
     int IPlugin::getIntOption(const char* option)
     {
-        std::stringstream ss = (*mOptions)[option].value;
-        int integer;
-        ss >> integer;
-        return integer;
+        return atoi((*mOptions)[option].value.c_str());
     }
 
     const char* IPlugin::getStringOption(const char* option)

@@ -3,6 +3,7 @@
 
 #include "common.h"
 #include "plugin.h"
+#include "plugininterfaces.h"
 #include "cfgfile.h"
 
 #include <map>
@@ -19,13 +20,33 @@ namespace main {
         ~Core();
         static Core& getSingleton();
 
+    // Methods
+    public:
+        void go();
+
+        // Output an informative message to any available of the main Magnetosphere window, log, and stdout
+        void writeString(const char* String);
+        // Interpret a typed instruction from the user via the scripting system
+        void runString(const char* String);
+        
+        // Acquire plugin objects
+        IGraphicsInterface* getGraphics();
+        IScriptingInterface* getScripting();
+
+        // Immediately loads and initialises a new plugin
+        IPlugin* loadPlugin(const char* name);
+        // Queues a plugin for loading when done with the current task
+        void queuePlugin(const char* name);
+
         // Automatically called by plugins
         void setLibraryObject(const char* name, IPlugin* object);
 
-    // Methods
-    public:
-        IPlugin* loadPlugin(const char* name);
-            
+        // Can be called once prior to destructor to unload everything
+        void shutdown();
+    
+    private:
+        void emptyPluginQueue();
+
     // Types
     private:
         struct PluginHandle
@@ -37,8 +58,13 @@ namespace main {
 
     // Data
     private:
+        IGraphicsInterface* mGraphics;
+        IScriptingInterface* mScripting;
         PluginMap* mPlugins;
+        std::vector<std::string>* mQueuedPlugins;
         ConfigFile mConfiguration;
+        std::string mLogBuf;
+        std::string mRunBuf;
     };
 
 } // namespace main

@@ -6,12 +6,13 @@
 namespace magnet {
 namespace main {
 
-    class Platform {
+    class MAG_MAIN_EXPORT Platform {
     public:
-        static void* LoadSharedLibrary(const char* name);
-        static void UnloadSharedLibrary(void* handle);
-        static void SetSharedLibraryPath(const char* path);
-        static void* GetSharedLibrarySymbolAddress(void* handle, const char* name);
+        static void* loadSharedLibrary(const char* name);
+        static void unloadSharedLibrary(void* handle);
+        static void setSharedLibraryPath(const char* path);
+        static void* getSharedLibrarySymbolAddress(void* handle, const char* name);
+        static bool update();
     };
 
 } // namespace main

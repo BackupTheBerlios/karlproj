@@ -1,0 +1,15 @@
+#if !defined(MAGNET_SCRIPTING_COMMON_H_)
+#define MAGNET_SCRIPTING_COMMON_H_
+
+#include "common.h"
+
+#if defined(SCRIPTING_EXPORTS)
+#   define MAG_SCRIPTING_EXPORT MAGNET_EXPORT
+#else
+#   define MAG_SCRIPTING_EXPORT MAGNET_IMPORT
+#endif
+
+#define SCRIPTING_INTERFACE_PLUGIN_NAME "Standard Scripting Interface"
+#define SCRIPTING_INTERFACE_PLUGIN_VERSION float(0.01)
+
+#endif // !defined(MAGNET_SCRIPTING_COMMON_H_) 
