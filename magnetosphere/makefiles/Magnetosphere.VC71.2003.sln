@@ -19,8 +19,21 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "graphicsogre", "..\graphics
 		{35AFBABB-DF05-43DE-91A7-BB828A874015} = {35AFBABB-DF05-43DE-91A7-BB828A874015}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "scriptinglua", "..\scriptinglua\scriptinglua.vcproj", "{7765FFD7-5382-45CC-BFC1-EB22A4FA643B}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "scriptinglua", "..\scriptinglua\scriptingluaVC71.vcproj", "{7765FFD7-5382-45CC-BFC1-EB22A4FA643B}"
 	ProjectSection(ProjectDependencies) = postProject
+		{C7E9AA01-397E-4E03-9508-ADA36DDEF8B7} = {C7E9AA01-397E-4E03-9508-ADA36DDEF8B7}
+		{4464818A-0254-4EE1-AD81-154C399BBE54} = {4464818A-0254-4EE1-AD81-154C399BBE54}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "network", "..\network\networkVC71.vcproj", "{C49F504F-3D08-42B0-9E5D-3194E3722E34}"
+	ProjectSection(ProjectDependencies) = postProject
+		{C7E9AA01-397E-4E03-9508-ADA36DDEF8B7} = {C7E9AA01-397E-4E03-9508-ADA36DDEF8B7}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "networkpcap", "..\networkpcap\networkpcapVC71.vcproj", "{04698A08-F2CD-41F9-B8CA-2A62FA729761}"
+	ProjectSection(ProjectDependencies) = postProject
+		{C7E9AA01-397E-4E03-9508-ADA36DDEF8B7} = {C7E9AA01-397E-4E03-9508-ADA36DDEF8B7}
+		{C49F504F-3D08-42B0-9E5D-3194E3722E34} = {C49F504F-3D08-42B0-9E5D-3194E3722E34}
 	EndProjectSection
 EndProject
 Global
@@ -49,6 +62,14 @@ Global
 		{7765FFD7-5382-45CC-BFC1-EB22A4FA643B}.Debug.Build.0 = Debug|Win32
 		{7765FFD7-5382-45CC-BFC1-EB22A4FA643B}.Release.ActiveCfg = Release|Win32
 		{7765FFD7-5382-45CC-BFC1-EB22A4FA643B}.Release.Build.0 = Release|Win32
+		{C49F504F-3D08-42B0-9E5D-3194E3722E34}.Debug.ActiveCfg = Debug|Win32
+		{C49F504F-3D08-42B0-9E5D-3194E3722E34}.Debug.Build.0 = Debug|Win32
+		{C49F504F-3D08-42B0-9E5D-3194E3722E34}.Release.ActiveCfg = Release|Win32
+		{C49F504F-3D08-42B0-9E5D-3194E3722E34}.Release.Build.0 = Release|Win32
+		{04698A08-F2CD-41F9-B8CA-2A62FA729761}.Debug.ActiveCfg = Debug|Win32
+		{04698A08-F2CD-41F9-B8CA-2A62FA729761}.Debug.Build.0 = Debug|Win32
+		{04698A08-F2CD-41F9-B8CA-2A62FA729761}.Release.ActiveCfg = Release|Win32
+		{04698A08-F2CD-41F9-B8CA-2A62FA729761}.Release.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 	EndGlobalSection

@@ -22,18 +22,25 @@ namespace main {
             mConfiguration.getValue("Core", "Plugin Folder", "plugins") );
         mGraphics = static_cast<IGraphicsInterface*>(loadPlugin(
             mConfiguration.getValue("Core", "Graphics Interface", "graphics.mpi") ));
+        update();
         mScripting = static_cast<IScriptingInterface*>(loadPlugin(
             mConfiguration.getValue("Core", "Scripting Interface", "scripting.mpi") ));
-        emptyPluginQueue();
+        update();
+        mNetwork = static_cast<INetworkInterface*>(loadPlugin(
+            mConfiguration.getValue("Core", "Network Interface", "network.mpi") ));
+        update();
         mConfiguration.write();
     }
 
     void Core::go()
     {
-        while (mGraphics->update() && Platform::update())
-        {
-            emptyPluginQueue();
-        }
+        while (update());
+    }
+
+    bool Core::update()
+    {
+        emptyPluginQueue();
+        return mGraphics->update() && Platform::update();
     }
 
     void Core::writeString(const char* string)
@@ -117,6 +124,11 @@ namespace main {
     IScriptingInterface* Core::getScripting()
     {
         return mScripting;
+    }
+
+    INetworkInterface* Core::getNetwork()
+    {
+        return mNetwork;
     }
     
     Core::~Core()

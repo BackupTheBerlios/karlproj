@@ -66,7 +66,7 @@ namespace ogre {
             createFrameListener();
 
             // TODO: make our own term handler
-            SET_TERM_HANDLER;
+            // SET_TERM_HANDLER;
 
             mRoot->getRenderSystem()->_initRenderTargets();
 

@@ -17,7 +17,7 @@ namespace script {
         virtual void runString(const char* string) = 0;
     };
 
-} // namespace graphics
+} // namespace script
 } // namespace magnet
 
 #endif // !defined(MAGNET_SCRIPTINGPLUGIN_H_) 

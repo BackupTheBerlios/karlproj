@@ -23,6 +23,7 @@ namespace main {
     // Methods
     public:
         void go();
+        bool update();
 
         // Output an informative message to any available of the main Magnetosphere window, log, and stdout
         void writeString(const char* String);
@@ -32,6 +33,7 @@ namespace main {
         // Acquire plugin objects
         IGraphicsInterface* getGraphics();
         IScriptingInterface* getScripting();
+        INetworkInterface* getNetwork();
 
         // Immediately loads and initialises a new plugin
         IPlugin* loadPlugin(const char* name);
@@ -60,6 +62,7 @@ namespace main {
     private:
         IGraphicsInterface* mGraphics;
         IScriptingInterface* mScripting;
+        INetworkInterface* mNetwork;
         PluginMap* mPlugins;
         std::vector<std::string>* mQueuedPlugins;
         ConfigFile mConfiguration;

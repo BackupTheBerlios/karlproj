@@ -10,6 +10,17 @@
 namespace magnet {
 namespace main {
 
+    // All plugins should use this, or export their own extern C getModuleObject
+    #define INITIALISE_MAGNET_PLUGIN(classname)                \
+        static classname s_##classname##_ModuleObject;         \
+        extern "C" MAGNET_EXPORT                               \
+            magnet::main::IPlugin* getModuleObject()           \
+        {                                                      \
+            return &s_##classname##_ModuleObject;              \
+        }                                                      \
+
+    #define MAGNET_INITIALISE_PLUGIN(classname) INITIALISE_MAGNET_PLUGIN(classname)
+
     class MAG_MAIN_EXPORT IPlugin
     {
     // Types
@@ -18,12 +29,14 @@ namespace main {
             std::string value;
             enum OptionType
             {
-                OT_STRING  = 0,
-                OT_INTEGER = 1,
-                OT_FLOAT   = 2,
-                OT_BOOL    = 3,
-                OT_CHOICE  = 4,
-                OT_PLUGIN  = OT_STRING,
+                OT_STRING      = 0,
+                OT_INTEGER     = 1,
+                OT_FLOAT       = 2,
+                OT_BOOL        = 3,
+                OT_CHOICE      = 4,
+                OT_MULTICHOICE = 5,
+                OT_PLUGIN      = OT_STRING,
+                OT_FILE        = OT_STRING,
             } type;
             std::vector <std::string> choices;
         };
@@ -61,15 +74,6 @@ namespace main {
         std::string mPluginName;
         float mPluginVersion;
     };
-
-    // All plugins should use this, or export their own extern C getModuleObject
-    #define INITIALISE_MAGNET_PLUGIN(classname)                \
-        static classname s_##classname##_ModuleObject;         \
-        extern "C" MAGNET_EXPORT                               \
-            magnet::main::IPlugin* getModuleObject()           \
-        {                                                      \
-            return &s_##classname##_ModuleObject;              \
-        }                                                      \
 
 } // namespace main
 } // namespace magnet

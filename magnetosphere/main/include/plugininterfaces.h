@@ -1,6 +1,7 @@
 #if !defined(MAGNET_PLUGININTERFACES_H_)
 #define MAGNET_PLUGININTERFACES_H_
 
+#include "common.h"
 #include "plugin.h"
 
 namespace magnet {
@@ -27,6 +28,16 @@ namespace main {
     // Methods
     public:
         virtual void runString(const char* string) = 0;
+    };
+
+    class MAG_MAIN_EXPORT INetworkInterface : public IPlugin
+    {
+    // Class
+    public:
+        INetworkInterface(const char* name, float ver) : IPlugin(name, ver) {}
+
+    // Methods
+    public:
     };
 
 } // namespace main
