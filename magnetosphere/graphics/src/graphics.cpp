@@ -31,7 +31,9 @@ namespace graphics {
 
     bool Graphics::update()
     {
-        return mRenderer->update();
+        if (mRenderer != 0)
+            return mRenderer->update();
+        return true;
     }
 
     void Graphics::shutdown()

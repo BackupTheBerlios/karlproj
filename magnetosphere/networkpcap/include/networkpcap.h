@@ -5,6 +5,8 @@
 #include "network.h"
 #include "networkplugin.h"
 
+#include "pcap.h"
+
 namespace magnet {
 namespace network {
 namespace pcap {
@@ -17,11 +19,24 @@ namespace pcap {
     // Methods
     public:
         void initialise();
+        bool update();
         void shutdown();
 
+    // Types
+    private:
+        struct PcapDevice
+        {
+            std::string name;
+            std::string description;
+            pcap_t* handle;
+        };
+        
     // Data
     private:
         Network* mInterface;
+        std::vector<PcapDevice> mDevices;
+        char mErrMsg[PCAP_ERRBUF_SIZE];
+        pcap_t* mDeviceHandle;
     };
 
 } // namespace pcap

@@ -38,6 +38,7 @@ namespace main {
 
     // Methods
     public:
+        virtual bool update() = 0;
     };
 
 } // namespace main

@@ -16,6 +16,7 @@ namespace network {
 
     // Methods
     public:
+        virtual bool update() = 0;
     };
 
 } // namespace network

@@ -40,8 +40,8 @@ namespace ogre {
 
         try
         {
-            main::Core::getSingleton().writeString("*-*-* OGRE Initialising");
-            main::Core::getSingleton().writeString(("*-*-* Version " +
+            //main::Core::getSingleton().writeString("*-*-* OGRE Initialising");
+            main::Core::getSingleton().writeString(("OGRE Version " +
                 StringConverter::toString(OGRE_VERSION_MAJOR) + "." + 
                 StringConverter::toString(OGRE_VERSION_MINOR) + "." + 
                 StringConverter::toString(OGRE_VERSION_PATCH) + " " + 

@@ -9,7 +9,7 @@ namespace main {
 
     Core* singletonCore = 0;
 
-    Core::Core(const char* cfgFile) : mPlugins(0), mGraphics(0)
+    Core::Core(const char* cfgFile) : mPlugins(0), mGraphics(0), mNetwork(0)
     {
         if (singletonCore != 0)
             throw("Core object constructed twice!");
@@ -39,8 +39,13 @@ namespace main {
 
     bool Core::update()
     {
+        bool retval = Platform::update();
+        if (mGraphics != 0)
+            retval &= mGraphics->update();
+        if (mNetwork != 0)
+            retval &= mNetwork->update();
         emptyPluginQueue();
-        return mGraphics->update() && Platform::update();
+        return retval;
     }
 
     void Core::writeString(const char* string)

@@ -20,6 +20,7 @@ namespace network {
         void initialise();
         void shutdown();
         void setPacketManager(INetworkPlugin *pmanager);
+        bool update();
     // Data
     private:
         INetworkPlugin* mPacketManager;

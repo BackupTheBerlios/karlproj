@@ -22,6 +22,15 @@ namespace network {
         mPacketManager = pmanager;
     }
 
+    bool Network::update()
+    {
+        if (mPacketManager != 0)
+        {
+            return mPacketManager->update();
+        }
+        return true;
+    }
+
     void Network::shutdown()
     {
     }
