@@ -22,17 +22,19 @@ lua_State* L;
     {
         mInterface = static_cast<Scripting*>(main::Core::getSingleton().getScripting());
         if (mInterface == 0)
-            throw("Error initialising script interpreter: no scripting interface loaded");
+            MAG_EXCEPT_DESCR(main::EXCEPTION_CONFIG, "Error initialising script interpreter: no scripting interface loaded");
         if (std::string(SCRIPTING_INTERFACE_PLUGIN_NAME) != mInterface->getName()
             || mInterface->getVersion() != SCRIPTING_INTERFACE_PLUGIN_VERSION)
         {
-            throw("Incorrect scripting interface for script interpreter '" PLUGIN_NAME "'");
+            //throw("Incorrect scripting interface for script interpreter '" PLUGIN_NAME "'");
+            MAG_EXCEPT_DESCR(main::EXCEPTION_CONFIG, "Incorrect scripting interface for script interpreter '" PLUGIN_NAME "'");
         }
         mLuaState = lua_open();
         L = mLuaState; // TODO: REMOVE ME
         if (mLuaState == 0)
         {
-            throw("Failed to create environment for script interpreter");
+            //throw("Failed to create environment for script interpreter");
+            MAG_EXCEPT_DESCR(main::EXCEPTION_INTERNAL, "Failed to create environment for script interpreter");
         }
         luaopen_base(mLuaState); lua_settop(mLuaState, 0);
         luaopen_table(mLuaState); lua_settop(mLuaState, 0);

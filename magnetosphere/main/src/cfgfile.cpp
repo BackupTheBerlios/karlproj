@@ -90,7 +90,7 @@ namespace main {
             ss << "Configuration saved to " << mFileName;
             Core::getSingleton().writeString(ss.str().c_str());
         } else {
-            throw( "Failed to open config file for writing!" );
+            MAG_EXCEPT_DESCR(EXCEPTION_INTERNAL, "Failed to open config file for writing!");
         }
     }
 

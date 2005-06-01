@@ -24,11 +24,13 @@ namespace pcap {
         // Check to make sure it's safe to load up
         mInterface = static_cast<Network*>(main::Core::getSingleton().getNetwork());
         if (mInterface == 0)
-            throw("Error initialising network packet manager: no network interface loaded");
+            //throw("Error initialising network packet manager: no network interface loaded");
+            MAG_EXCEPT_DESCR(main::EXCEPTION_CONFIG, "Error initialising network packet manager: no network interface loaded");
         if (std::string(NETWORK_INTERFACE_PLUGIN_NAME) != mInterface->getName()
             || mInterface->getVersion() != NETWORK_INTERFACE_PLUGIN_VERSION)
         {
-            throw("Incorrect network interface for packet manager '" PLUGIN_NAME "'");
+            MAG_EXCEPT_DESCR(main::EXCEPTION_CONFIG, "Incorrect network interface for packet manager '" PLUGIN_NAME "'");
+            //throw("Incorrect network interface for packet manager '" PLUGIN_NAME "'");
         }
 
         // Acquire a list of working network devices
@@ -37,7 +39,8 @@ namespace pcap {
         if (pcap_findalldevs(&devList, mErrMsg) == -1)
         {
             main::Core::getSingleton().writeString(mErrMsg);
-            throw("Failed to retrieve pcap device list!");
+            MAG_EXCEPT_DESCR(main::EXCEPTION_INTERNAL, "Failed to retrieve pcap device list!");
+            //throw("Failed to retrieve pcap device list!");
         }
         for (curDev = devList; curDev != 0; curDev = curDev->next)
         {

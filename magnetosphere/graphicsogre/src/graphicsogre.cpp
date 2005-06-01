@@ -31,11 +31,11 @@ namespace ogre {
     {
         mInterface = static_cast<Graphics*>(main::Core::getSingleton().getGraphics());
         if (mInterface == 0)
-            throw("Failed to initialize graphics renderer: no graphics interface loaded");
+            MAG_EXCEPT_DESCR(main::EXCEPTION_CONFIG, "Failed to initialize graphics renderer: no graphics interface loaded");
         if (std::string(GRAPHICS_INTERFACE_PLUGIN_NAME) != mInterface->getName()
             || mInterface->getVersion() != (float)GRAPHICS_INTERFACE_PLUGIN_VERSION)
         {
-            throw("Incorrect graphics interface for graphics renderer '" PLUGIN_NAME "'");
+            MAG_EXCEPT_DESCR(main::EXCEPTION_CONFIG, "Incorrect graphics interface for graphics renderer '" PLUGIN_NAME "'");
         }
 
         try
@@ -57,9 +57,6 @@ namespace ogre {
             createCamera();
             createViewports();
 
-            // Set default mipmap level (NB some APIs ignore this)
-            TextureManager::getSingleton().setDefaultNumMipMaps(5);
-
             // Create the scene
             createScene();
 
@@ -71,13 +68,11 @@ namespace ogre {
             mRoot->getRenderSystem()->_initRenderTargets();
 
         } catch(Ogre::Exception& e) {
-            char a[1024];
-            strcpy(a, e.getFullDescription().c_str());
-            throw((char*)a);
+            MAG_EXCEPT_DESCR(main::EXCEPTION_INTERNAL, e.getFullDescription());
         } catch(CEGUI::Exception &e) {
             char a[1024];
             strcpy(a, e.getMessage().c_str());
-            throw((char*)a);
+            MAG_EXCEPT_DESCR(main::EXCEPTION_INTERNAL, (char*)a);
         }
         mInterface->setRenderer(this);
     }
@@ -99,13 +94,13 @@ namespace ogre {
             type = std::string(archives, off1, off2 - off1);
             path = std::string(archives, off2 + 1, off3 - off2 - 1);
             off1 = off3 + 1;
-            ResourceManager::addCommonArchiveEx(path, type);
+            ResourceGroupManager::getSingleton().addResourceLocation(path, type);
             off2 = archives.find_first_of("=:", off1);
             off3 = archives.find_first_of(";,", off2);
         }
         type = std::string(archives, off1, off2 - off1);
         path = std::string(archives, off2 + 1);
-        ResourceManager::addCommonArchiveEx(path, type);
+        ResourceGroupManager::getSingleton().addResourceLocation(path, type);
     }
 
     bool GraphicsOgre::configure()
@@ -148,7 +143,7 @@ namespace ogre {
     void GraphicsOgre::createScene()
     {
 	    // setup GUI system
-	    mGUIRenderer = new CEGUI::OgreRenderer(mWindow, Ogre::RENDER_QUEUE_OVERLAY, false, 1000);
+	    mGUIRenderer = new CEGUI::OgreCEGUIRenderer(mWindow, Ogre::RENDER_QUEUE_OVERLAY, false, 1000);
         new CEGUI::System(mGUIRenderer,(CEGUI::utf8*)getStringOption("CEGUI Log File"));
 
 		//Logger::getSingleton().setLoggingLevel(Informative);
@@ -203,13 +198,11 @@ namespace ogre {
         {
             return new OgreCmdWindow(name);
         } catch(Ogre::Exception& e) {
-            char a[1024];
-            strcpy(a, e.getFullDescription().c_str());
-            throw((char*)a);
+            MAG_EXCEPT_DESCR(main::EXCEPTION_INTERNAL, e.getFullDescription());
         } catch(CEGUI::Exception &e) {
             char a[1024];
             strcpy(a, e.getMessage().c_str());
-            throw((char*)a);
+            MAG_EXCEPT_DESCR(main::EXCEPTION_INTERNAL, (char*)a);
         }
     }
 

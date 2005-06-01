@@ -12,7 +12,8 @@ namespace main {
     Core::Core(const char* cfgFile) : mPlugins(0), mGraphics(0), mNetwork(0)
     {
         if (singletonCore != 0)
-            throw("Core object constructed twice!");
+            MAG_EXCEPT_DESCR(EXCEPTION_INTERNAL, "Core object constructed twice!");
+            //throw("Core object constructed twice!");
         singletonCore = this;
         mQueuedPlugins = new std::vector<std::string>();
         mPlugins = new PluginMap();

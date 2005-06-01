@@ -26,7 +26,8 @@ namespace graphics {
         mRenderer = renderer;
         mCmdWindow = mRenderer->createCommandWindow("Magnetosphere");
         if (mCmdWindow == 0)
-            throw("Failed to create command window!");
+            //throw("Failed to create command window!");
+            MAG_EXCEPT_DESCR(main::EXCEPTION_INTERNAL, "Failed to create command window!");
     }
 
     bool Graphics::update()

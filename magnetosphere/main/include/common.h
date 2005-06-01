@@ -27,7 +27,7 @@
 #   define MAGNET_COMPILER  MAG_COMPILER_BORLAND
 #   define COMPILER_VERSION __BCPLUSPLUS__*/
 #else
-#   error "Unknown compiler!"
+#   error Unknown compiler!  Please add preprocessor defines for your compiler.
 #   define MAGNET_COMPILER  MAG_COMPILER_GNUC
 #   define COMPILER_VERSION 0
 #endif
@@ -64,5 +64,8 @@
 #ifdef MAGNET_DEBUG_BUILD
 #   define _STLP_DEBUG 1
 #endif
+
+// Include error handling
+#include "exception.h"
 
 #endif // !defined(MAGNET_COMMON_H_)

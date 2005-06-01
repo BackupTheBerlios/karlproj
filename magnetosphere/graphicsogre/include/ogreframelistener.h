@@ -3,7 +3,7 @@
 
 #include "CEGUI.h"
 #include "ExampleApplication.h"
-#include "renderers/OgreGUIRenderer/ogrerenderer.h"
+#include "OgreCEGUIRenderer.h"
 
 namespace magnet {
 namespace graphics {

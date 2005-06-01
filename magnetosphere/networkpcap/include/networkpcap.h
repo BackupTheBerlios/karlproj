@@ -4,6 +4,7 @@
 #include "common.h"
 #include "network.h"
 #include "networkplugin.h"
+#include "networklayer.h"
 
 #include "pcap.h"
 
@@ -11,7 +12,8 @@ namespace magnet {
 namespace network {
 namespace pcap {
 
-    class NetworkPcap : public INetworkPlugin {
+    class NetworkPcap : public INetworkPlugin, public INetworkLayer
+    {
     // Class
     public:
         NetworkPcap();
@@ -43,4 +45,4 @@ namespace pcap {
 } // namespace network
 } // namespace magnet
 
-#endif // !defined(MAGNET_NETWORK_PCAP_H_
+#endif // !defined(MAGNET_NETWORK_PCAP_H_)

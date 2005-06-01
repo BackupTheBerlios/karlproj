@@ -139,6 +139,9 @@
 				RelativePath=".\include\networkcommon.h">
 			</File>
 			<File
+				RelativePath=".\include\networklayer.h">
+			</File>
+			<File
 				RelativePath=".\include\networkplugin.h">
 			</File>
 		</Filter>

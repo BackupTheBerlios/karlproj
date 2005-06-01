@@ -127,6 +127,9 @@
 				RelativePath=".\src\core.cpp">
 			</File>
 			<File
+				RelativePath=".\src\exception.cpp">
+			</File>
+			<File
 				RelativePath=".\src\main.cpp">
 			</File>
 			<File
@@ -155,6 +158,9 @@
 			</File>
 			<File
 				RelativePath=".\include\core.h">
+			</File>
+			<File
+				RelativePath=".\include\exception.h">
 			</File>
 			<File
 				RelativePath=".\include\platform.h">
