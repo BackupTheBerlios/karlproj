@@ -1,0 +1,6 @@
+#if !defined(MAGNET_NETWORK_SOCKET_H_)
+#define MAGNET_NETWORK_SOCKET_H_
+
+
+
+#endif // !define(MAGNET_NETWORK_SOCKET_H_)

@@ -7,18 +7,21 @@
 namespace magnet {
 namespace network {
 
-    class MAG_NETWORK_EXPORT INetworkLayer
+    class INetworkLayer
     {
     // Class
     public:
 
     // Methods
     public:
+
+
         //UDP/Datagram
 
         //TCP/Stream
 
-        //RAW?
+        //RAW
+        virtual void sendRawPacket(const char* data, unsigned short len) = 0;
 
         //Attach
     };

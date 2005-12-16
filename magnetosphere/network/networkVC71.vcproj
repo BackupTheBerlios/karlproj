@@ -144,6 +144,9 @@
 			<File
 				RelativePath=".\include\networkplugin.h">
 			</File>
+			<File
+				RelativePath=".\include\networksocket.h">
+			</File>
 		</Filter>
 	</Files>
 	<Globals>

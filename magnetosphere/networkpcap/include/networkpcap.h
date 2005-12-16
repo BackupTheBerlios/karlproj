@@ -21,8 +21,11 @@ namespace pcap {
     // Methods
     public:
         void initialise();
+        bool applyOptions();
         bool update();
         void shutdown();
+
+        void sendRawPacket(const char* data, unsigned short len);
 
     // Types
     private:
